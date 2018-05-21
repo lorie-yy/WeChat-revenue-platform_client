@@ -1,0 +1,36 @@
+.pageContainer {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  color: black;
+}
+.sidebarMenu {
+  background-color: #2C3749;
+  font-size: 17px;
+}
+.ant-menu.ant-menu-sub.ant-menu-vertical {
+  background-color: #2C3749 !important;
+}
+.logo {
+  text-align: center;
+  padding: 60px 0;
+  background: url('../../assets/wechatcloud.png') no-repeat center center;
+}
+.logout {
+  color: #747474;
+}
+.logout:hover {
+  color: #000;
+}
+.rightContainer {
+  height: 100vh;
+}
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}

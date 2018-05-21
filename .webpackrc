@@ -1,0 +1,27 @@
+{
+  "entry": "src/index.js",
+  "publicPath": "/",
+  "outputPath": "./list",
+  "theme": {
+    "@primary-color": "#0099cc",
+    "@link-color": "#0099cc",
+    "@border-radius-base": "2px",
+    "@font-size-base": "16px",
+    "@line-height-base": "1.2"
+  },
+  "proxy": {
+    "/wechatfans": {
+      "target": "http://192.168.119.18:8000/wechatfans/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/wechatfans" : "" }
+    }
+  },
+  "extraBabelPlugins": [
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" },"transform-runtime"]
+  ],
+  "env": {
+    "development": {
+      "extraBabelPlugins": ["dva-hmr"]
+    }
+  }
+}
