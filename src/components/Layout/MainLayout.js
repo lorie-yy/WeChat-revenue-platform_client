@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'dva/router';
+import { connect } from 'dva';
 import { Layout,Icon,Menu,Divider,Popover, Button } from 'antd';
 import styles from './Layout.less';
 const { Header, Content,Sider}= Layout
@@ -18,6 +19,7 @@ class Main extends React.Component {
 
   render() {
     // console.log(this.props.location.pathname);
+    const {children,HomeData}=this.props
     const menuSize={
       fontSize:'17px',
       margin:'10px 0'
@@ -25,12 +27,12 @@ class Main extends React.Component {
     const menuIcon={
       marginRight:'35px',
     }
-    const text=<span>欢迎来到收益平台</span>
-    const content=(
-      <div>
-        <p>这里是通知内容略略略略略略略略略，这里是通知内容略略略略略略略略略，这里是通知内容略略略略略略略略略。</p>
-      </div>
-    )
+    // const text=<span>欢迎来到收益平台</span>
+    // const content=(
+    //   <div>
+    //     <p>这里是通知内容略略略略略略略略略，这里是通知内容略略略略略略略略略，这里是通知内容略略略略略略略略略。</p>
+    //   </div>
+    // )
     return(
       <Layout className={styles.pageContainer}>
         <Sider className={styles.sidebarMenu} width={230}
@@ -84,19 +86,19 @@ class Main extends React.Component {
             />
             <div style={{float:'right',paddingRight:'20px',color:'#747474'}}>
               <div>
-                <span>lorie</span><Divider type="vertical" style={{background:'#747474'}} />
-                <a href='' className={styles.logout}>退出登录chuchuchu</a>
+                <span>{HomeData.username}</span><Divider type="vertical" style={{background:'#747474'}} />
+                <a href='/' className={styles.logout}>退出登录</a>
               </div>
             </div>
             <div style={{ background: '#fff',lineHeight:'45px',padding:'0 20px',}}>
-              <Popover placement="bottomLeft" title={text} content={content} trigger="hover" >
+              <Popover placement="bottomLeft" title={HomeData.notify_title} content={HomeData.notify_desc} trigger="hover" >
                 <Button><Icon type='notification'></Icon>通知：</Button>
               </Popover>
             </div>
           </Header>
           <Content>
             <div style={{ margin: '24px 20px', padding: 24, background: '#fff', minHeight: 280 }}>
-              {this.props.children}
+              {children}
             </div>
           </Content>
         </Layout>
@@ -104,4 +106,15 @@ class Main extends React.Component {
     );
   }
 }
-export default Main;
+
+function mapStateToProps(state) {
+  // Home是对应的namespace，HomeData是对应的state
+  const { HomeData } = state.Home;
+  // console.log(HomeData)
+  return {
+    // 返回的HomeData，在function(HomeData){}中以参数的形式使用，在render中以this.props.HomeData的形式使用
+    HomeData,
+  };
+}
+// connect是redux提供的一个函数，作用是将数据和组件连接起来，也就是所谓的向components组件传递数据
+export default connect(mapStateToProps)(Main);
