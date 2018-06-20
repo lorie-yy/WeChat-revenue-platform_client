@@ -2,9 +2,10 @@ import React from 'react';
 import { routerRedux,Route, Switch,Redirect } from 'dva/router';
 // import dynamic from 'dva/dynamic';
 // import IndexPage from './routes/IndexPage';
+import Mainlayout from './components/Layout/MainLayout';
 import Products from './components/Products';
 import Earnings from './components/Earnings';
-import Mainlayout from './components/Layout/MainLayout';
+import Withdrawals from './components/Withdrawals';
 const { ConnectedRouter } = routerRedux
 
 function RouterConfig({ history, app }) {
@@ -27,6 +28,7 @@ function RouterConfig({ history, app }) {
           {/* 路由重定向 */}
           <Route path="/" render={() => (<Redirect to='/Earnings' />)} exact />
           <Route path="/Earnings" exact component={Earnings} />
+          <Route path="/Withdrawals" exact component={Withdrawals} />
           <Route path="/Products" exact component={Products} />
 
             {/* <Route exact path="/" render={() => (<Redirect to='/IndexPage' />)} />

@@ -7,6 +7,7 @@ const { Header, Content,Sider}= Layout
 const { SubMenu}= Menu
 
 class Main extends React.Component {
+  // 这里建立了临时存储的state
   state = {
     collapsed: false,
   }
@@ -19,7 +20,7 @@ class Main extends React.Component {
 
   render() {
     // console.log(this.props.location.pathname);
-    const {children,HomeData}=this.props
+    const {children,EarningsData}=this.props
     const menuSize={
       fontSize:'17px',
       margin:'10px 0'
@@ -55,8 +56,8 @@ class Main extends React.Component {
             <Menu.Item key="/Earnings" style={menuSize} >
               <Link to='/Earnings'><span><Icon type="line-chart" style={menuIcon} />收益统计</span></Link>
             </Menu.Item>
-            <Menu.Item key="/Products" style={menuSize} >
-              <Link to='/Products'><span><Icon type="pay-circle-o" style={menuIcon}/>申请提现</span></Link>
+            <Menu.Item key="/Withdrawals" style={menuSize} >
+              <Link to='/Withdrawals'><span><Icon type="pay-circle-o" style={menuIcon}/>申请提现</span></Link>
             </Menu.Item>
             <Menu.Item key="/ApplyRecords" style={menuSize} >
               <Link to='/ApplyRecords'><span><Icon type="profile" style={menuIcon}/>申请记录</span></Link>
@@ -86,12 +87,12 @@ class Main extends React.Component {
             />
             <div style={{float:'right',paddingRight:'20px',color:'#747474'}}>
               <div>
-                <span>{HomeData.username}</span><Divider type="vertical" style={{background:'#747474'}} />
+                <span>{EarningsData.username}</span><Divider type="vertical" style={{background:'#747474'}} />
                 <a href='/' className={styles.logout}>退出登录</a>
               </div>
             </div>
             <div style={{ background: '#fff',lineHeight:'45px',padding:'0 20px',}}>
-              <Popover placement="bottomLeft" title={HomeData.notify_title} content={HomeData.notify_desc} trigger="hover" >
+              <Popover placement="bottomLeft" title={EarningsData.notify_title} content={EarningsData.notify_desc} trigger="hover" >
                 <Button><Icon type='notification'></Icon>通知：</Button>
               </Popover>
             </div>
@@ -109,11 +110,11 @@ class Main extends React.Component {
 
 function mapStateToProps(state) {
   // Home是对应的namespace，HomeData是对应的state
-  const { HomeData } = state.Home;
+  const { EarningsData } = state.Earnings;
   // console.log(HomeData)
   return {
     // 返回的HomeData，在function(HomeData){}中以参数的形式使用，在render中以this.props.HomeData的形式使用
-    HomeData,
+    EarningsData,
   };
 }
 // connect是redux提供的一个函数，作用是将数据和组件连接起来，也就是所谓的向components组件传递数据
